@@ -3,8 +3,7 @@ from functools import wraps
 from flask import (
     request, jsonify, g
 )
-from firebase_admin import credentials, auth
-cred = credentials.Certificate('./credentials.json')
+from firebase_admin import auth
 
 # Decorator to verify the token
 def verify_token(f):
