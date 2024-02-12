@@ -27,16 +27,11 @@ def register():
     # Set the user with the custom claims
     auth.set_custom_user_claims(uid, {'accountType': accountType})
 
-    # Force token refresh
-    auth.revoke_refresh_tokens(uid)
-
     # Generate a new access token with the custom claim attached
     custom_token = auth.create_custom_token(uid)
 
     # Decode the custom token to a string
     custom_token_str = custom_token.decode('utf-8')
-
-    print(custom_token_str)
 
     response_body = {
         "uid": uid,
