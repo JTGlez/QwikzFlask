@@ -1,7 +1,13 @@
 from app import create_app
 import firebase_admin
 from firebase_admin import credentials
-cred = credentials.Certificate('./credentials.json')
+import os
+
+# Build the absolute path to the credentials file
+cred_path = os.path.join('/opt', 'credentials.json')
+
+# Load the credentials from the specified path
+cred = credentials.Certificate(cred_path)
 
 # Firebase configuration
 default_app = firebase_admin.initialize_app(cred)
