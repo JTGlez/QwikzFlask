@@ -32,7 +32,7 @@ def create_app(test_config=None):
     # A root page that says hello
     @app.route('/')
     def root():
-        return '<h1>Root Page</h1>'
+        return '<h1>Root Page AWS!</h1>'
 
     # A simple page that says hello
     @app.route('/hello')
