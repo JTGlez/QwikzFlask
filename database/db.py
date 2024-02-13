@@ -1,16 +1,24 @@
-import os
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker, declarative_base
+import psycopg2
+from psycopg2 import DatabaseError
+from decouple import config
 
-engine = create_engine(os.environ.get('DATABASE_URL'))
-db_session = scoped_session(sessionmaker(autocommit=False,
-                                         autoflush=False,
-                                         bind=engine))
+def get_conn():
+    """Returns a single connection to the database.
 
-Base = declarative_base()
-Base.query = db_session.query_property()
+    Raises:
+        e: DatabaseError
 
+    Returns:
+        connection: Database connection to execute queries and stored procedures
+    """
+    try:
+        conn = psycopg2.connect(
+            host=config('RDS_HOSTNAME'),
+            user=config('RDS_USERNAME'),
+            password=config('RDS_PASSWORD'),
+            database=config('DB_NAME')
+        )
+        return conn
 
-def init_db():
-    import models
-    Base.metadata.create_all(bind=engine)
+    except DatabaseError as e:
+        raise e

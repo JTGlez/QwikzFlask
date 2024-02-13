@@ -4,3 +4,5 @@ psycopg2-binary
 gunicorn
 flask-cors
 firebase-admin
+python-decouple
+python-dotenv

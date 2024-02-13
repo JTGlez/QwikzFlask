@@ -25,6 +25,7 @@ def verify_token(f):
             uid = decoded_token['uid']
             # Almacena el uid del usuario en el contexto de la petición
             g.uid = uid
+            g.token = token
         except ValueError:
             return jsonify({'message': 'Token is invalid'}),  403
 

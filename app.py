@@ -3,6 +3,8 @@ from flask import Flask
 from flask_cors import CORS, cross_origin
 from routes.auth import bp as auth_blueprint
 from routes.students import bp as students_blueprint
+from routes.teachers import bp as teachers_blueprint
+from database.db import get_conn
 
 # Init Flask application as an instance from the Flask class using factory pattern
 def create_app(test_config=None):
@@ -28,6 +30,7 @@ def create_app(test_config=None):
     # Register the blueprints for the app
     app.register_blueprint(auth_blueprint)
     app.register_blueprint(students_blueprint)
+    app.register_blueprint(teachers_blueprint)
 
     # A root page that says hello
     @app.route('/')
