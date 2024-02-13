@@ -18,11 +18,5 @@ default_app = firebase_admin.initialize_app(cred)
 # Create the app
 app = create_app()
 
-# Config the environment variables
-app.config['PGSQL_HOST'] = os.getenv('RDS_HOSTNAME')
-app.config['PGSQL_USER'] = os.getenv('RDS_USERNAME')
-app.config['PGSQL_PASSWORD'] = os.getenv('RDS_PASSWORD')
-app.config['PGSQL_DATABASE'] = os.getenv('DB_NAME')
-
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
