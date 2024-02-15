@@ -1,3 +1,4 @@
+
 from database.db import get_conn
 from .entities.Teacher import Teacher
 
