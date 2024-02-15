@@ -16,7 +16,8 @@ def get_conn():
             host=config('RDS_HOSTNAME'),
             user=config('RDS_USERNAME'),
             password=config('RDS_PASSWORD'),
-            database=config('DB_NAME')
+            database=config('DB_NAME'),
+            options=f'-c search_path={config("DB_SCHEMA")}'
         )
         return conn
 
